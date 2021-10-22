@@ -29,7 +29,7 @@ public class AdminLivrosBean {
 	private AutorDao autorDao;
 	
 	@Transactional
-	public void salvar() {
+	public String salvar() {
 		
 		for (Integer autorId : autoresId) {
 			
@@ -38,9 +38,8 @@ public class AdminLivrosBean {
 
 		livroDao.salvar(livro);
 		System.out.println("Livro salvo com sucesso! " + livro);
-		
-		this.autoresId = new ArrayList<>();
-		this.livro = new Livro();
+
+		return "/livros/lista?faces-redirect=true";
 	}
 
 	public Livro getLivro() {
