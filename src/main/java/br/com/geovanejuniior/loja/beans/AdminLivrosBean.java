@@ -25,11 +25,19 @@ public class AdminLivrosBean {
 	
 	// Context and Dependency Injection
 	@Inject
+	private FacesContext context;
+	
+	@Inject
 	private LivroDao livroDao;
 	
 	@Inject
 	private AutorDao autorDao;
 	
+	public AdminLivrosBean() {
+
+		context = FacesContext.getCurrentInstance();
+	}
+
 	@Transactional
 	public String salvar() {
 		
@@ -41,16 +49,20 @@ public class AdminLivrosBean {
 		livroDao.salvar(livro);
 		
 		// Ativando o Face Scope
-		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		context.getExternalContext().getFlash().setKeepMessages(true);
+
+		// Envio da mensagem de sucesso ao formulário
+		context.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!"));
+//		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		
 		// Envio da mensagem de sucesso ao formulário
-		FacesContext
-			.getCurrentInstance()
-			.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!"));
+//		FacesContext
+//			.getCurrentInstance()
+//			.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!"));
 		
 		System.out.println("Livro salvo com sucesso! " + livro);
 
-		return "/livros/lista";
+		return "/livros/lista?faces-redirect=true";
 	}
 
 	public Livro getLivro() {
