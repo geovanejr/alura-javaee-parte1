@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -37,9 +39,18 @@ public class AdminLivrosBean {
 		}
 
 		livroDao.salvar(livro);
+		
+		// Ativando o Face Scope
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		
+		// Envio da mensagem de sucesso ao formulário
+		FacesContext
+			.getCurrentInstance()
+			.addMessage(null, new FacesMessage("Livro cadastrado com sucesso!"));
+		
 		System.out.println("Livro salvo com sucesso! " + livro);
 
-		return "/livros/lista?faces-redirect=true";
+		return "/livros/lista";
 	}
 
 	public Livro getLivro() {
