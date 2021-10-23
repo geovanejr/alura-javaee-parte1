@@ -7,6 +7,42 @@
 
 <h:form>
 
+	<h:messages />
+
+	<div>
+		<h:outputLabel value="Título" />
+		<h:inputText 
+			value="#{adminLivrosBean.livro.titulo}" 
+			required="true"
+			requiredMessage="O título do livro deve ser informado"/>
+	</div>
+	<div>
+		<h:outputLabel value="Descrição" />
+		<h:inputTextarea 
+			rows="4" 
+			cols="20" 
+			value="#{adminLivrosBean.livro.descricao}"
+			required="true"
+			requiredMessage="A descrição do livro deve ser informada"/>
+	</div>
+	<div>
+		<h:outputLabel value="Número de Páginas" />
+		<h:inputText 
+			value="#{adminLivrosBean.livro.numPagina}"
+			required="true"
+			requiredMessage="O número de páginas deve ser informado">
+		<f:validateLongRange minimum="80" />
+		</h:inputText>
+	</div>
+	<div>
+		<h:outputLabel value="Preço" />
+		<h:inputText 
+			value="#{adminLivrosBean.livro.preco}"
+			required="true"
+			requiredMessage="O valor do preço deve ser informado">
+		<f:validateDoubleRange minimum="20" maximum="300" />
+		</h:inputText>
+	</div>
 	<div>
 	    <h:outputLabel value="Autores" />
 	    <h:selectManyListbox value="#{adminLivrosBean.autoresId}" converter="javax.faces.Integer">
@@ -15,22 +51,6 @@
 	         itemValue="#{autor.id}"
 	         itemLabel="#{autor.nome} "/>
 	    </h:selectManyListbox>
-	</div>
-	<div>
-		<h:outputLabel value="Título" />
-		<h:inputText rows="4" cols="20" value="#{adminLivrosBean.livro.titulo}"/>
-	</div>
-	<div>
-		<h:outputLabel value="Descrição" />
-		<h:inputTextarea value="#{adminLivrosBean.livro.descricao}"/>
-	</div>
-	<div>
-		<h:outputLabel value="Número de Páginas" />
-		<h:inputText value="#{adminLivrosBean.livro.numPagina}"/>
-	</div>
-	<div>
-		<h:outputLabel value="Preço" />
-		<h:inputText value="#{adminLivrosBean.livro.preco}"/>
 	</div>
 	<h:commandButton value="Cadastrar" action="#{adminLivrosBean.salvar}"/>
 </h:form>
