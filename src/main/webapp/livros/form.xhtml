@@ -13,8 +13,7 @@
 		<h:outputLabel value="Título" />
 		<h:inputText 
 			value="#{adminLivrosBean.livro.titulo}" 
-			required="true"
-			requiredMessage="O título do livro deve ser informado"/>
+			required="true"/>
 	</div>
 	<div>
 		<h:outputLabel value="Descrição" />
@@ -22,15 +21,13 @@
 			rows="4" 
 			cols="20" 
 			value="#{adminLivrosBean.livro.descricao}"
-			required="true"
-			requiredMessage="A descrição do livro deve ser informada"/>
+			required="true"/>
 	</div>
 	<div>
 		<h:outputLabel value="Número de Páginas" />
 		<h:inputText 
 			value="#{adminLivrosBean.livro.numPagina}"
-			required="true"
-			requiredMessage="O número de páginas deve ser informado">
+			required="true">
 		<f:validateLongRange minimum="80" />
 		</h:inputText>
 	</div>
@@ -38,8 +35,7 @@
 		<h:outputLabel value="Preço" />
 		<h:inputText 
 			value="#{adminLivrosBean.livro.preco}"
-			required="true"
-			requiredMessage="O valor do preço deve ser informado">
+			required="true">
 		<f:validateDoubleRange minimum="20" maximum="300" />
 		</h:inputText>
 	</div>
