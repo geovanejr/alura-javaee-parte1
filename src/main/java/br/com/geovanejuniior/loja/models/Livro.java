@@ -12,6 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name="tb_livros")
@@ -22,16 +29,24 @@ public class Livro {
 	private Integer id;
 	
 	@Column(length = 50)
+	@NotBlank
+	@NotNull(message = "Campo não pode ser nulo")
 	private String titulo;
 	
 	@Lob
+	@Length(min = 10, max = 1500)
 	private String descricao;
 	
+	@DecimalMin("20")
 	private BigDecimal preco;
+	
+	@Min(20)
 	private Integer numPagina;
 	
 	
 	@ManyToMany
+	@Size(min=1)
+	@NotNull
 	private List<Autor> autores = new ArrayList<>();
 	
 	public String getTitulo() {

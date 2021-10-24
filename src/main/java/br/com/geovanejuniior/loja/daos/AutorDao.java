@@ -14,7 +14,8 @@ public class AutorDao {
 
 	public List<Autor> findAll() {
 		
-		String jPQL = "select a from Autor a";
+		String jPQL = "select a from Autor a "
+				+     "order by a.nome";
 		return em
 				.createQuery(jPQL, Autor.class)
 				.getResultList();
