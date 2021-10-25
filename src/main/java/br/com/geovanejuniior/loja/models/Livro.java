@@ -49,7 +49,7 @@ public class Livro {
 	private Integer numPagina;
 	
 	@Temporal(TemporalType.DATE)
-	private Calendar dataPublicacao =Calendar.getInstance();
+	private Calendar dataPublicacao;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@Size(min=1)
