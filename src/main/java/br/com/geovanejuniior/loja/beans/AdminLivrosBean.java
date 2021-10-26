@@ -1,6 +1,5 @@
 package br.com.geovanejuniior.loja.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -21,8 +20,6 @@ public class AdminLivrosBean {
 	
 	private Livro livro = new Livro();
 	
-	private List<Integer> autoresId = new ArrayList<>();
-	
 	// Context and Dependency Injection
 	@Inject
 	private FacesContext context;
@@ -40,11 +37,6 @@ public class AdminLivrosBean {
 
 	@Transactional
 	public String salvar() {
-		
-		for (Integer autorId : autoresId) {
-			
-			livro.getAutores().add(new Autor(autorId));
-		}
 
 		livroDao.salvar(livro);
 		
@@ -72,16 +64,7 @@ public class AdminLivrosBean {
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-	
-	
-	public List<Integer> getAutoresId() {
-		return autoresId;
-	}
-
-	public void setAutoresId(List<Integer> autoresId) {
-		this.autoresId = autoresId;
-	}
-
+		
 	public List<Autor> getAutores() {
 		
 		return autorDao.findAll();
